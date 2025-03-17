@@ -13,3 +13,7 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result of the frontend
+
+## Figma Designs
+
+Open [https://www.figma.com/files/team/1482809961438904403/project/352665726?fuid=1297229672371007770] in order to view the Figma designs we have in mind
