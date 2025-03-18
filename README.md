@@ -16,4 +16,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Figma Designs
 
-Open [https://www.figma.com/files/team/1482809961438904403/project/352665726?fuid=1297229672371007770] in order to view the Figma designs we have in mind
+Open [[https://www.figma.com/files/team/1482809961438904403/project/352665726?fuid=1297229672371007770](https://www.figma.com/design/BjN1ukRhKEf0wljfdFySpa/Untitled?node-id=0-1&t=gNBZDIRqyZE9gVXL-1)] in order to view the Figma designs we have in mind
