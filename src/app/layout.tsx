@@ -1,7 +1,8 @@
 // src/app/layout.tsx
 import React from 'react';
 import './globals.css';
-import Link from 'next/link'
+import Header from '@/components/universal/Header';
+import Footer from '@/components/universal/Footer';
 
 export default function RootLayout({
   children,
@@ -23,44 +24,7 @@ export default function RootLayout({
             minHeight: '100vh',
           }}
         >
-          {/* Header */}
-          <header
-            style={{
-              backgroundColor: '#F5B53B',
-              padding: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              position: 'fixed',
-              top: '1rem',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '97%',
-              borderRadius: '12px',
-              zIndex: 1000,
-
-            }}
-          >
-            <h1>SparkByte!</h1>
-            <nav>
-              <ul className="navList">
-                <li>
-                  <Link href="/" className="navLink">Home</Link>
-                </li>
-                <li>
-                  <Link href="/events" className="navLink">Events</Link>
-                </li>
-                <li>
-                  <Link href="/about" className="navLink">About</Link>
-                </li>
-                <li>
-                  <Link href="/profile" className="navLink">Profile</Link>
-                </li>
-              </ul>
-
-            </nav>
-
-          </header>
+          < Header />
 
           {/* Main content */}
           <main style={{
@@ -73,44 +37,7 @@ export default function RootLayout({
             {children}
           </main>
 
-          {/* Footer */}
-          <footer
-            style={{
-              backgroundColor: '#333',
-              color: '#fff',
-              textAlign: 'center',
-              padding: '1rem',
-            }}
-          >
-            <p>Contact us</p>
-            <p>
-              <a
-                href="https://facebook.com"
-                style={{ color: '#fff', marginRight: '1rem' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://instagram.com"
-                style={{ color: '#fff', marginRight: '1rem' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </a>
-              <a
-                href="https://twitter.com"
-                style={{ color: '#fff' }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Twitter
-              </a>
-            </p>
-            <p>&copy; {new Date().getFullYear()} My Website</p>
-          </footer>
+          <Footer />
         </div>
       </body>
     </html>
