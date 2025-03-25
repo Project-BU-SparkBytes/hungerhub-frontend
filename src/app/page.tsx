@@ -1,22 +1,23 @@
+'use client'
 // src/app/page.tsx
 import React from 'react';
 import { useEffect } from 'react';
 
 export default function Home() {
+  // temp API call for testing frontent + backend integration
   useEffect(() => {
     async function helloTest() {
       try {
         const response = await (await fetch(`/api/hello`)).json()
         /* if error returned set to that instead */
-        const { error } = response
-        if (!error || !response) {
-          console.log(response.message)
+        const { status } = response
+        if (status == 200) {
+          console.log(response)
         } else {
-          console.log(error)
+          console.log(response)
         }
       } catch (e) {
         console.log("Error while calling api:", e)
-        console.log("Failed to get products (Internal Server Error)")
       }
     }
     helloTest()
