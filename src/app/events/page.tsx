@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 
 interface Event {
@@ -17,24 +16,21 @@ export default function EventsPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const response = await fetch('http://localhost:8000/events');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        const res = await fetch('http://127.0.0.1:8000/events');
+        if (!res.ok) {
+          const errData = await res.json();
+          throw new Error(errData.detail || `HTTP error! status: ${res.status}`);
         }
-
-        const data = await response.json();
+        const data = await res.json();
         setEvents(data);
       } catch (err) {
-        setError('Failed to fetch events');
-        console.error('Fetch error:', err);
+        setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
       }
-    };
-
+    }
     fetchData();
   }, []);
 
@@ -55,7 +51,7 @@ export default function EventsPage() {
     );
   }
 
-  if (events.length === 0) {
+  if (!events.length) {
     return (
       <div className="text-gray-500 text-center py-8">
         No upcoming events found
@@ -73,7 +69,6 @@ export default function EventsPage() {
           >
             <div className="p-4">
               <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
-              
               <div className="mb-2">
                 <p className="text-gray-600 font-medium">When:</p>
                 <p className="text-gray-500 text-sm">
@@ -86,12 +81,10 @@ export default function EventsPage() {
                   {event.time}
                 </p>
               </div>
-
               <div className="mb-2">
                 <p className="text-gray-600 font-medium">Where:</p>
                 <p className="text-gray-500 text-sm">{event.location}</p>
               </div>
-
               <div className="mt-4">
                 <p className="text-gray-600">{event.description}</p>
               </div>
