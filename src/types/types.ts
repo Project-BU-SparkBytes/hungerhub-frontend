@@ -3,5 +3,10 @@ export interface User {
 }
 
 export interface Event {
-  "id": string,
+  id: number;
+  name: string;
+  description: string;
+  location: string;
+  date: string;
+  time: string;
 }

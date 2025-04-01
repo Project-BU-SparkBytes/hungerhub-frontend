@@ -1,3 +1,4 @@
+'use server'
 // temp route for testing frontend backend integration
 import { NextResponse } from 'next/server';
 
@@ -9,6 +10,14 @@ export async function GET() {
         'Content-Type': 'application/json',
       },
     });
+
+    // better error checking needed here (find out what the error was and what status)
+    if (response.status != 200) {
+      return NextResponse.json(
+        { error: 'Failed to fetch data' },
+        { status: 500 }
+      );
+    }
 
     // parse response
     const data = await response.json();

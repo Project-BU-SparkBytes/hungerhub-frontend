@@ -1,37 +1,37 @@
 'use client';
 import { useEffect, useState } from 'react';
-
-interface Event {
-  id: number;
-  name: string;
-  description: string;
-  location: string;
-  date: string; 
-  time: string;
-}
+import { Event } from "@/types/types"
 
 export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    async function fetchData() {
+    // fetches events
+    async function fetchEvents() {
+      setLoading(true)
       try {
-        const res = await fetch('http://127.0.0.1:8000/events');
-        if (!res.ok) {
-          const errData = await res.json();
-          throw new Error(errData.detail || `HTTP error! status: ${res.status}`);
+        // call /api/events from NextJS APIs
+        const response = await fetch(`/api/events`);
+
+        // if response is not okay, then throw error
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(`${errData.error}; Status: ${response.status}`);
         }
-        const data = await res.json();
+
+        // if response is okay, then set the events
+        const { data } = await response.json()
         setEvents(data);
+
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        setError(String(err));
       } finally {
         setLoading(false);
       }
     }
-    fetchData();
+    fetchEvents();
   }, []);
 
   if (loading) {
