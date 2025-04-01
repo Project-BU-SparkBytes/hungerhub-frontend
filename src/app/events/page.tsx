@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { Event } from "@/types/types"
+import { Loading } from "@/components/ui/loading";
+import { DisplayEvents } from "@/components/pages/events/DisplayEvents";
 
 export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -34,15 +36,14 @@ export default function EventsPage() {
     fetchEvents();
   }, []);
 
+  // return loading component if set to true
   if (loading) {
     return (
-      <div className="text-center py-8">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-        <p className="mt-4">Loading events...</p>
-      </div>
+      <Loading />
     );
   }
 
+  // return error component if set to true
   if (error) {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center max-w-md mx-auto mt-8">
@@ -51,6 +52,7 @@ export default function EventsPage() {
     );
   }
 
+  // return no events found if events length is 0
   if (!events.length) {
     return (
       <div className="text-gray-500 text-center py-8">
@@ -59,39 +61,10 @@ export default function EventsPage() {
     );
   }
 
+  // return events
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {events.map((event) => (
-          <div
-            key={event.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-          >
-            <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
-              <div className="mb-2">
-                <p className="text-gray-600 font-medium">When:</p>
-                <p className="text-gray-500 text-sm">
-                  {new Date(event.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                  <span className="mx-2">•</span>
-                  {event.time}
-                </p>
-              </div>
-              <div className="mb-2">
-                <p className="text-gray-600 font-medium">Where:</p>
-                <p className="text-gray-500 text-sm">{event.location}</p>
-              </div>
-              <div className="mt-4">
-                <p className="text-gray-600">{event.description}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      <DisplayEvents events={events} />
+    </>
   );
 }
