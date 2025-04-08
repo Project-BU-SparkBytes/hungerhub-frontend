@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
@@ -18,14 +18,14 @@ export default function LoginPage() {
       const response = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
 
       if (response.ok) {
         router.push('/profile');
       } else {
-        setError(data.message || 'Login failed');
+        setError(data.error || 'Login failed');
       }
     } catch (err) {
       console.error(err);
@@ -59,16 +59,16 @@ export default function LoginPage() {
           <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>
         )}
 
-        {/* Username */}
+        {/* Email */}
         <div>
-          <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem' }}>
-            Username:
+          <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>
+            Email:
           </label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={{
               width: '100%',
               padding: '0.5rem',

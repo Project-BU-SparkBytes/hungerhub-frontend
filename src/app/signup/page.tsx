@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function SignupPage() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
@@ -25,16 +25,17 @@ export default function SignupPage() {
       const response = await fetch('/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
+      console.log(data)
 
       if (response.ok) {
         // Redirect the user to the login page
         router.push('/login');
       } else {
         // Display any error message returned by the server
-        setError(data.message || 'Sign-up failed.');
+        setError(data.error || 'Sign-up failed.');
       }
     } catch (err) {
       console.error(err);
@@ -69,16 +70,16 @@ export default function SignupPage() {
           <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>
         )}
 
-        {/* Username Field */}
+        {/* Email Field */}
         <div>
-          <label htmlFor="username" style={{ display: 'block', marginBottom: '0.5rem' }}>
-            Username:
+          <label htmlFor="email" style={{ display: 'block', marginBottom: '0.5rem' }}>
+            Email:
           </label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={{
               width: '100%',
               padding: '0.5rem',
