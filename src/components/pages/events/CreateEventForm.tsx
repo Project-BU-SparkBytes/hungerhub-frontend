@@ -78,7 +78,7 @@ export default function CreateEventForm() {
       }
 
       // if response is okay, then route user to the event
-      // temp: route back to events list
+      // temp: route back to events list.
       router.push("/events")
 
       console.log(response)
