@@ -15,6 +15,7 @@ export default function SignupPage() {
     event.preventDefault();
     setError('');
 
+
     if (password !== confirmPassword) {
       setError('Passwords do not match.');
       return;
