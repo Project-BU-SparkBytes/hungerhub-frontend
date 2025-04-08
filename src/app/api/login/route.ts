@@ -1,21 +1,27 @@
 'use server'
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const { username, password } = await request.json();
+    const values = await req.json();
     const response = await fetch(`http://localhost:8000/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password
+      }),
     });
 
     // if response is not okay, then throw error to be caught later here
     if (!response.ok) {
       const errData = await response.json();
-      throw new Error(errData.detail || `HTTP error! status: ${response.status}`);
+      return NextResponse.json(
+        { error: errData.detail || 'Unknown error from backend' },
+        { status: response.status }
+      )
     }
 
     // parse response
