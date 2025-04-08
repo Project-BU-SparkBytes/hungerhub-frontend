@@ -2,16 +2,15 @@ import { Event } from "@/types/types"
 export function EventCard(props: { event: Event }) {
   const event = props.event
   return (
-    <>
-      <div
-        key={event.id}
-        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-      >
-        <div className="p-4">
-          <h3 className="text-xl font-semibold mb-2">{event.name}</h3>
-          <div className="mb-2">
-            <p className="text-gray-600 font-medium">When:</p>
-            <p className="text-gray-500 text-sm">
+    <div
+      className="w-full rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6"
+      style={{ backgroundColor: "#FFE4C0" }}
+    >
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <div>
+          <h3 className="text-2xl font-bold text-gray-900">{event.name}</h3>
+          <div className="mt-2 flex flex-col sm:flex-row sm:items-center text-gray-700 text-sm">
+            <p>
               {new Date(event.date).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
@@ -20,16 +19,14 @@ export function EventCard(props: { event: Event }) {
               <span className="mx-2">•</span>
               {event.time}
             </p>
-          </div>
-          <div className="mb-2">
-            <p className="text-gray-600 font-medium">Where:</p>
-            <p className="text-gray-500 text-sm">{event.location}</p>
-          </div>
-          <div className="mt-4">
-            <p className="text-gray-600">{event.description}</p>
+            <span className="hidden sm:inline mx-2">|</span>
+            <p className="mt-1 sm:mt-0">{event.location}</p>
           </div>
         </div>
       </div>
-    </>
+      <div className="mt-4 text-gray-800 text-base">
+        {event.description}
+      </div>
+    </div>
   )
 }
