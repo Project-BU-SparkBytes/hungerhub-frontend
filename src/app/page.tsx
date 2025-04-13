@@ -11,7 +11,7 @@ export default function Home() {
     <main className="text-center mt-8">
     <div style={{display: "flex", flexDirection: "row", gap: "20px", padding: "30px"}}>
 
-      <div style={{ flex: "1", padding: "35px", backgroundColor: "#ffe8a4", borderRadius: "12px"}}>
+      <div style={{ flex: "1", padding: "35px", backgroundColor: "#FFE4C0", borderRadius: "12px"}}>
         <h2 className="text-5xl mb-4">
           <b>Welcome to Spark!Bytes</b>
         </h2>
@@ -29,7 +29,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div style={{flex: "1", alignContent: "center", backgroundColor: "#ffe8a4", borderRadius: "12px", padding: "35px"}}>
+      <div style={{flex: "1", alignContent: "center", backgroundColor: "#FFE4C0", borderRadius: "12px", padding: "35px"}}>
         <h3 className="text-3xl mb-3">
           <b>Login or Sign-up</b>
         </h3>

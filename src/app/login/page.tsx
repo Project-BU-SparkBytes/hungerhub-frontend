@@ -20,9 +20,10 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      const data = await response.json();
+      const { data, error } = await response.json();
 
       if (response.ok) {
+        localStorage.setItem('access_token', data.access_token);
         router.push('/profile');
       } else {
         setError(data.error || 'Login failed');
