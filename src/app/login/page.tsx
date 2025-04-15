@@ -20,7 +20,7 @@ export default function LoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      const { data, error } = await response.json();
+      const { data } = await response.json();
 
       if (response.ok) {
         localStorage.setItem('access_token', data.access_token);
