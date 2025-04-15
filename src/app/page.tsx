@@ -1,7 +1,6 @@
 'use client'
 // src/app/page.tsx
 import React from 'react';
-import { Button } from '@/components/ui/button';
 
 export default function Home() {
 
@@ -13,9 +12,6 @@ export default function Home() {
       <p className="text-xl"> {/* style={{ fontSize: '1.2rem' }} */}
         This is the home page!
       </p>
-      <Button>
-        Test button using Shadcn
-      </Button>
 
     </main>
   );
