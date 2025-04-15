@@ -20,7 +20,7 @@ export default function Header() {
 
         }}
       >
-        <h1>SparkByte!</h1>
+        <h1><b>Spark!Bytes</b></h1>
         <nav>
           <ul className="navList">
             <li>
