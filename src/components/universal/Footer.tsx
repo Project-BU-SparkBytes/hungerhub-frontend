@@ -1,3 +1,5 @@
+
+
 export default function Footer() {
   return (
     <>
@@ -10,8 +12,7 @@ export default function Footer() {
           padding: '1rem',
         }}
       >
-        <p>Contact us</p>
-        <p>
+        {/* <p>
           <a
             href="https://facebook.com"
             style={{ color: '#fff', marginRight: '1rem' }}
@@ -36,8 +37,8 @@ export default function Footer() {
           >
             Twitter
           </a>
-        </p>
-        <p>&copy; {new Date().getFullYear()} My Website</p>
+        </p> */}
+        <p>&copy; {new Date().getFullYear()} Spark!Bytes</p>
       </footer>
     </>
   )
