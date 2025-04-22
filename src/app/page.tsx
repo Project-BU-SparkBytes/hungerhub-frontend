@@ -44,7 +44,7 @@ export default function Home() {
 
           <div style={{ display: "flex", flexDirection: "row", gap: "40px", justifyContent: "center", }}>
             <Button style={{ cursor: "pointer", width: "9em", height: "3em" }}>
-              <Link href="login">Login</Link>
+              <Link href="login">Log in</Link>
             </Button>
 
             <Button style={{ cursor: "pointer", width: "9em", height: "3em" }}>
