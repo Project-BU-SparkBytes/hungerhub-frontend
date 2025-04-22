@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { set } from 'react-hook-form';
+//import { set } from 'react-hook-form';
 
 export default function ProfilePage() {
   const [user, setUser] = useState<{ email: string; first_name: string; last_name: string } | null>(null);
@@ -24,7 +24,7 @@ export default function ProfilePage() {
       setIsLoggedIn(true)
 
       try {
-        const response = await fetch('http://localhost:8000/profile', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/profile`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -45,36 +45,36 @@ export default function ProfilePage() {
     };
 
     fetchUser();
-  }, []);
+  }, [router]);
 
   if (error) return <div style={{ color: 'red' }}>{error}</div>;
 
   return (
     <div style={{ padding: '2rem' }}>
       {isLoggedIn && (
-          <>
+        <>
           <h1>Welcome to your profile, {user?.first_name}!</h1>
           {user ? (
             <>
-            <div style={{ marginTop: '1rem' }}>
-              <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>First Name:</strong> {user.first_name}</p>
-              <p><strong>Last Name:</strong> {user.last_name}</p>
-            </div>
+              <div style={{ marginTop: '1rem' }}>
+                <p><strong>Email:</strong> {user.email}</p>
+                <p><strong>First Name:</strong> {user.first_name}</p>
+                <p><strong>Last Name:</strong> {user.last_name}</p>
+              </div>
 
-            <br></br>
+              <br></br>
 
-            <Button className = "cta-btn" style={{ cursor: "pointer", width: "9em", height: "3em", backgroundColor: "#333" }} onClick={() => {
-              localStorage.removeItem('access_token');
-              router.push('/login');
-            }}>
-              Log Out
-            </Button>
+              <Button className="cta-btn" style={{ cursor: "pointer", width: "9em", height: "3em", backgroundColor: "#333" }} onClick={() => {
+                localStorage.removeItem('access_token');
+                router.push('/login');
+              }}>
+                Log Out
+              </Button>
             </>
 
-        ) : (
-          <p>Loading user info...</p>
-        )}
+          ) : (
+            <p>Loading user info...</p>
+          )}
         </>
       )}
     </div>
