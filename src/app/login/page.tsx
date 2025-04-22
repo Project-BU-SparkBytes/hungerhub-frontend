@@ -45,7 +45,9 @@ export default function LoginPage() {
         padding: '2rem 0',
       }}
     >
-      <h1 style={{ marginBottom: '2rem', fontSize: '2rem' }}>Login</h1>
+      <h1 style={{ marginBottom: '0.5rem', fontSize: '2rem' }}>Login</h1>
+      <p>Please login to view events!</p>
+      <br />
 
       <form
         onSubmit={handleSubmit}
