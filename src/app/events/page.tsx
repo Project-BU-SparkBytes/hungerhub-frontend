@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import { Event } from "@/types/types"
 import { Loading } from "@/components/ui/loading";
 import { DisplayEvents } from "@/components/pages/events/DisplayEvents";
+import { useRouter } from 'next/navigation';
 
 export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     // fetches events
@@ -33,6 +35,7 @@ export default function EventsPage() {
         setLoading(false);
       }
     }
+
     fetchEvents();
   }, []);
 
