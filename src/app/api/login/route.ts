@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   try {
     const values = await req.json();
-    const response = await fetch(`http://localhost:8000/login`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
