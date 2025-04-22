@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const response = await fetch(`http://localhost:8000/events`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/events`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
