@@ -17,23 +17,12 @@ export default function RootLayout({
         3) Apply flex with column direction and minHeight = 100vh
       */}
       <body style={{ margin: 0, padding: 0 }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-          }}
+        <div className="flex flex-col min-h-screen"
         >
           < Header />
 
           {/* Main content */}
-          <main style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          <main className="flex flex-col flex-1 justify-center items-center px-4">
             {children}
           </main>
 

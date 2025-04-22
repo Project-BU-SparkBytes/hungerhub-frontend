@@ -3,8 +3,8 @@ import { EventCard } from "@/components/pages/events/EventCard"
 export function DisplayEvents(props: { events: Event[] }) {
   const events = props.events
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="w-full max-w-screen-lg mx-auto px-6 py-10 mt-[5%]">
+      <div className="flex flex-col gap-8">
         {events.map((event: Event) => (
           <EventCard key={event.id} event={event} />
         ))}
