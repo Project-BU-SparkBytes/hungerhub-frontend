@@ -9,8 +9,8 @@ export default function ProfilePage() {
   const [user, setUser] = useState<{ email: string; first_name: string; last_name: string } | null>(null);
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
   const router = useRouter();
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -21,7 +21,7 @@ export default function ProfilePage() {
         setError('');
         return;
       }
-      setIsLoggedIn(true);
+      setIsLoggedIn(true)
 
       try {
         const response = await fetch('http://localhost:8000/profile', {

@@ -4,14 +4,16 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
   try {
     const values = await req.json();
-    const response = await fetch(`http://localhost:8000/signup`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: values.email,
-        password: values.password
+        password: values.password,
+        first_name: "himichelle",
+        last_name: "pleaseeditthis",
       }),
     });
 
