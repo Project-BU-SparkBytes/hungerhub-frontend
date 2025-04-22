@@ -10,6 +10,9 @@ export default function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [optInEmails, setOptInEmails] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -25,7 +28,7 @@ export default function SignupPage() {
       const response = await fetch('/api/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, firstName, lastName, optInEmails, }),
       });
       const data = await response.json();
       console.log(data)
@@ -89,6 +92,46 @@ export default function SignupPage() {
             required
           />
         </div>
+        {/* First Name FIeld */}
+        <div>
+          <label htmlFor="firstName" style={{ display: 'block', marginBottom: '0.5rem' }}>
+            First Name:
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              borderRadius: '4px',
+              border: '1px solid #ccc',
+            }}
+            required
+          />
+        </div>
+
+
+        {/* Lasr Name FIeld */}
+        <div>
+          <label htmlFor="lastName" style={{ display: 'block', marginBottom: '0.5rem' }}>
+            Last Name:
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              borderRadius: '4px',
+              border: '1px solid #ccc',
+            }}
+            required
+          />
+        </div>
 
         {/* Password Field */}
         <div>
@@ -128,6 +171,16 @@ export default function SignupPage() {
             }}
             required
           />
+        </div>
+        {/* Opt-in checkbox */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <input
+            type="checkbox"
+            id="optInEmails"
+            checked={optInEmails}
+            onChange={e => setOptInEmails(e.target.checked)}
+          />
+          <label htmlFor="optInEmails">I’d like to receive email notifications</label>
         </div>
 
         {/* Sign Up Button */}
