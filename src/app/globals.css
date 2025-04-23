@@ -169,6 +169,7 @@
 
 .dropdownMenu li .navLink:hover {
   @apply bg-gray-100;
+}
 
 .cta-btn {
   transition: background 0.2s, transform 0.1s;
