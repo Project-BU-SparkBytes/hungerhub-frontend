@@ -9,10 +9,20 @@ export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    // fetches events
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      setIsLoggedIn(false);
+      setLoading(false);
+      router.push('/login');
+      setError('');
+      return;
+
+    }
+
     async function fetchEvents() {
       setLoading(true)
       try {
@@ -29,6 +39,7 @@ export default function EventsPage() {
         const { data } = await response.json()
         setEvents(data);
 
+
       } catch (err) {
         setError(String(err));
       } finally {
@@ -37,17 +48,19 @@ export default function EventsPage() {
     }
 
     fetchEvents();
-  }, []);
+    setIsLoggedIn(true);
+
+  }, [router]);
 
   // return loading component if set to true
-  if (loading) {
+  if (loading && isLoggedIn == true) {
     return (
       <Loading />
     );
   }
 
   // return error component if set to true
-  if (error) {
+  if (error && isLoggedIn == true) {
     return (
       <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-center max-w-md mx-auto mt-8">
         {error}
@@ -56,7 +69,7 @@ export default function EventsPage() {
   }
 
   // return no events found if events length is 0
-  if (!events.length) {
+  if (!events.length && isLoggedIn == true) {
     return (
       <div className="text-gray-500 text-center py-8">
         No upcoming events found
@@ -66,8 +79,10 @@ export default function EventsPage() {
 
   // return events
   return (
-    <>
-      <DisplayEvents events={events} />
-    </>
+    isLoggedIn && (
+      <>
+        <DisplayEvents events={events} />
+      </>
+    )
   );
 }

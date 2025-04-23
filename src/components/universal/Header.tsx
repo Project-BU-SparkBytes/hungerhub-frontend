@@ -3,23 +3,16 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 
 export default function Header() {
-  const [user, setUser] = useState<{ name: string } | null>(null)
-  useEffect(() => {
-    fetch('/api/auth/me')
-      .then(res => {
-        if (!res.ok) throw new Error('not logged in')
-        return res.json()
-      })
-      .then(data => setUser(data.user))
-      .catch(() => setUser(null))
-  }, [])
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleLogout = async () => {
-    await fetch('/api/auth/logout', { method: 'POST' })
-    // clear local state & redirect
-    setUser(null)
-    window.location.href = '/'
-  }
+  useEffect(() => {
+    const token = localStorage.getItem('access_token');
+    if (!token) return;
+
+    setIsLoggedIn(true);
+
+  }, []);
+
   return (
     <>
       {/* Header */}
@@ -60,16 +53,18 @@ export default function Header() {
             <li>
               <Link href="/about" className="navLink">About</Link>
             </li>
-            {user ? (
+            {isLoggedIn ? (
               // only show when logged in
               <li>
-                <button
-                  onClick={handleLogout}
+                <Link href="#"
+                  onClick={() => {
+                    localStorage.removeItem('access_token');
+                    window.location.reload();
+                  }}
                   className="navLink"
-                  style={{ background: 'none', border: 'none', cursor: 'pointer' }}
                 >
                   Log out
-                </button>
+                </Link>
               </li>
             ) : (
               // only show when logged out
