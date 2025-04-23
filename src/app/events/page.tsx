@@ -46,6 +46,7 @@ export default function EventsPage() {
         setLoading(false);
       }
     }
+
     fetchEvents();
     setIsLoggedIn(true);
 

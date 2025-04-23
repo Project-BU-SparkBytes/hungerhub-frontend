@@ -39,8 +39,16 @@ export default function Header() {
             <li>
               <Link href="/" className="navLink">Home</Link>
             </li>
-            <li>
-              <Link href="/events" className="navLink">Events</Link>
+            <li className="dropdown">
+              <span className="navLink">Events ▾</span>
+              <ul className="dropdownMenu">
+                <li>
+                  <Link href="/events" className="navLink">Events</Link>
+                </li>
+                <li>
+                  <Link href="/events/create-event" className="navLink">Create Event</Link>
+                </li>
+              </ul>
             </li>
             <li>
               <Link href="/about" className="navLink">About</Link>
