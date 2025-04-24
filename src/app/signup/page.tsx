@@ -3,12 +3,12 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner'
 
 export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
   const router = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -16,11 +16,9 @@ export default function SignupPage() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setError('');
-
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+      toast.error('Passwords do not match');
       return;
     }
 
@@ -38,11 +36,11 @@ export default function SignupPage() {
         router.push('/login');
       } else {
         // Display any error message returned by the server
-        setError(data.error || 'Sign-up failed.');
+        toast.error(data.error || 'Sign-up failed.');
       }
     } catch (err) {
       console.error(err);
-      setError('An error occurred. Please try again.');
+      toast.error("Something went wrong. Please try again another time.");
     }
   };
 
@@ -68,10 +66,6 @@ export default function SignupPage() {
           width: '300px',
         }}
       >
-        {/* Display any error messages */}
-        {error && (
-          <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>
-        )}
 
         {/* Email Field */}
         <div>

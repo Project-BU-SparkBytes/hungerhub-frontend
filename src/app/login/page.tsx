@@ -1,18 +1,20 @@
 // src/app/login/page.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner'
+import { AuthContext } from '@/context/AuthContext';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const router = useRouter();
+
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setError('');
 
     try {
       const response = await fetch('/api/login', {
@@ -24,13 +26,14 @@ export default function LoginPage() {
 
       if (response.ok) {
         localStorage.setItem('access_token', data.access_token);
+        setIsAuthenticated(true);
         router.push('/profile');
       } else {
-        setError(data.error || 'Login failed');
+        toast.error(data?.error || 'Login failed');
       }
     } catch (err) {
       console.error(err);
-      setError('An error occurred. Please try again.');
+      toast.error("Something went wrong. Please try again another time.");
     }
   };
 
@@ -58,9 +61,6 @@ export default function LoginPage() {
           width: '300px',
         }}
       >
-        {error && (
-          <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>
-        )}
 
         {/* Email */}
         <div>
