@@ -1,17 +1,15 @@
 'use client';
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '@/context/AuthContext';
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (!token) return;
-
-    setIsLoggedIn(true);
-
-  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    setIsAuthenticated(false);
+  };
 
   return (
     <>
@@ -53,14 +51,11 @@ export default function Header() {
             <li>
               <Link href="/about" className="navLink">About</Link>
             </li>
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               // only show when logged in
               <li>
                 <Link href="#"
-                  onClick={() => {
-                    localStorage.removeItem('access_token');
-                    window.location.reload();
-                  }}
+                  onClick={handleLogout}
                   className="navLink"
                 >
                   Log out

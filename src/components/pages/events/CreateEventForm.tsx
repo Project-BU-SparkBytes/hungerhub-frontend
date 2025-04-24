@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 const formSchema = z.object({
   // todo: give stricter fields & account for food available & allergies
@@ -81,11 +82,9 @@ export default function CreateEventForm() {
       // temp: route back to events list.
       router.push("/events")
 
-      console.log(response)
-      console.log("okay")
-
     } catch (err) {
       console.log(err)
+      toast.error("Something went wrong. Please try again another time.");
     }
 
   }

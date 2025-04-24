@@ -3,21 +3,17 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link'
-import { useEffect, useState } from 'react';
+import { useContext } from 'react'
+import { AuthContext } from '@/context/AuthContext';
 
 
 export default function Home() {
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //const [firstName, setFirstName] = useState('');
-
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (!token) return;
-
-    setIsLoggedIn(true);
-
-  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    setIsAuthenticated(false);
+  };
 
   return (
     <main className="text-center mt-8">
@@ -42,7 +38,7 @@ export default function Home() {
         </div>
 
         <div style={{ flex: "1", alignContent: "center", backgroundColor: "#FFE4C0", borderRadius: "12px", padding: "35px", boxShadow: "0 2px 8px rgba(0,0,0,0.2)" }}>
-          {!isLoggedIn && (
+          {!isAuthenticated && (
             <>
               <h3 className="text-3xl mb-3">
                 <b>Login or Sign-up</b>
@@ -71,7 +67,7 @@ export default function Home() {
             </>
           )}
 
-          {isLoggedIn && (
+          {isAuthenticated && (
             <>
               <h3 className="text-3xl mb-3">
                 <b>Welcome Back!</b>
@@ -90,10 +86,7 @@ export default function Home() {
 
               <br></br>
 
-              <Button className="cta-btn" style={{ cursor: "pointer", width: "9em", height: "3em", backgroundColor: "#333" }} onClick={() => {
-                localStorage.removeItem('access_token');
-                window.location.reload();
-              }}>
+              <Button className="cta-btn" style={{ cursor: "pointer", width: "9em", height: "3em", backgroundColor: "#333" }} onClick={handleLogout}>
                 Log Out
               </Button>
             </>
