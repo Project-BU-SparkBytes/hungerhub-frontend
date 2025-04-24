@@ -1,9 +1,14 @@
 'use client'
 import React, { createContext, useState, useEffect } from 'react';
 
-export const AuthContext = createContext({
+type AuthContextType = {
+  isAuthenticated: boolean;
+  setIsAuthenticated: (val: boolean) => void;
+};
+
+export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
-  setIsAuthenticated: (_val: boolean) => { }
+  setIsAuthenticated: () => { }
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
