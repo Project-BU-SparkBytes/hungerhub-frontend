@@ -18,6 +18,7 @@ export async function GET() {
 
     // parse response
     const data = await response.json();
+    console.log(data)
 
     // return data along with success status
     return NextResponse.json({ data: data }, { status: 200 });
