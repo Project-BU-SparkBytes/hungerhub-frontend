@@ -1,12 +1,10 @@
 'use client';
 import Link from 'next/link'
 import { useContext } from 'react'
-import { useRouter } from 'next/navigation'
 import { AuthContext } from '@/context/AuthContext';
 
 export default function Header() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  const router = useRouter()
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');
