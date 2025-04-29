@@ -10,6 +10,7 @@ export default function Footer() {
           color: '#fff',
           textAlign: 'center',
           padding: '1rem',
+          marginTop: '2rem',
         }}
       >
         {/* <p>

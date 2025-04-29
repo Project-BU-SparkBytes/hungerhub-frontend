@@ -18,8 +18,11 @@ export default function CreateEventsPage() {
   return (
 
     <>
-      <h1> Create Event</h1>
-      <hr className="my-2 border-t-1 w-full" />
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <h1 style={{ marginBottom: '2rem', fontSize: '2rem' }}>Create Event</h1>
       <CreateEventForm />
     </>
   )

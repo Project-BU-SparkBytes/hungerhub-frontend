@@ -12,16 +12,19 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         email: values.email,
         password: values.password,
-        first_name: "himichelle",
-        last_name: "pleaseeditthis",
+        first_name: values.firstName,
+        last_name: values.lastName,
+        role: values.role,
+        notifications: values.notifications,
       }),
     });
 
     // if response is not okay, then throw error to be caught later here
     if (!response.ok) {
       const errData = await response.json();
+      console.error('Backend signup error:', errData);
       return NextResponse.json(
-        { error: errData.detail || 'Unknown error from backend' },
+        { error: errData.detail || JSON.stringify(errData) || 'Unknown error from backend' },
         { status: response.status }
       );
     }
