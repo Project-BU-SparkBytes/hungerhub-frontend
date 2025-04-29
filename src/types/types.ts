@@ -9,4 +9,6 @@ export interface Event {
   location: string;
   date: string;
   time: string;
+  student_alumni_prof: string;
+  food_available: string;
 }
