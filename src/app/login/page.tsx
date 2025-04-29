@@ -49,7 +49,7 @@ export default function LoginPage() {
       }}
     >
       <h1 style={{ marginBottom: '0.5rem', fontSize: '2rem' }}>Login</h1>
-      <p>Please login to view events!</p>
+      <p>Please login to view/create events!</p>
       <br />
 
       <form
