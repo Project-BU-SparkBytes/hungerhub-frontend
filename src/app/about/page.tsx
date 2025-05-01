@@ -1,5 +1,8 @@
 // src/app/about/page.tsx
+import Image from 'next/image'
 export default function About() {
+  const width = 140
+  const height = 140
   return (
     <div className="max-w-2xl mx-auto p-4 mt-16">
       {/* tital */}
@@ -10,10 +13,12 @@ export default function About() {
       <div className="space-y-12">
         {/* 1 */}
         <div className="flex items-start">
-          <img
+          <Image
             src="/images/Michelle.jpg"
             alt="Michelle"
-            className="w-35 h-35 rounded-full object-cover flex-shrink-0"
+            width={width}
+            height={height}
+            className="rounded-full object-cover flex-shrink-0"
           />
           <div className="flex-1 pl-6">
             <h3 className="text-xl font-semibold">Michelle Chen</h3>
@@ -26,10 +31,12 @@ export default function About() {
 
         {/* 2 */}
         <div className="flex items-start">
-          <img
+          <Image
+            width={width}
+            height={height}
             src="/images/Ieva.jpg"
             alt="Ieva"
-            className="w-35 h-35 rounded-full object-cover flex-shrink-0"
+            className="rounded-full object-cover flex-shrink-0"
           />
           <div className="flex-1 pl-6">
             <h3 className="text-xl font-semibold">Ieva Sagaitis</h3>
@@ -42,10 +49,12 @@ export default function About() {
 
         {/* 3 */}
         <div className="flex items-start">
-          <img
+          <Image
             src="/images/Mensun.png"
+            width={width}
+            height={height}
             alt="picture"
-            className="w-35 h-35 rounded-full object-cover flex-shrink-0"
+            className="rounded-full object-cover flex-shrink-0"
           />
           <div className="flex-1 pl-6">
             <h3 className="text-xl font-semibold">Mensun Wang</h3>
@@ -58,10 +67,12 @@ export default function About() {
 
         {/* 4 */}
         <div className="flex items-start">
-          <img
+          <Image
             src="/images/Leo.jpg"
             alt="picture"
-            className="w-35 h-35 rounded-full object-cover flex-shrink-0"
+            width={width}
+            height={height}
+            className="rounded-full object-cover flex-shrink-0"
           />
           <div className="flex-1 pl-6">
             <h3 className="text-xl font-semibold">Leo (Last name)</h3>

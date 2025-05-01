@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 import { AuthContext } from '@/context/AuthContext';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
 
 export default function Header() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
