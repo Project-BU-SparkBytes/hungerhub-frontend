@@ -40,6 +40,9 @@ const formSchema = z.object({
   food_quantity: z.string().min(2, {
     message: "must be at least 2 characters.",
   }),
+  student_alumni_prof: z.string().min(2, {
+    message: "must be at least 2 characters.",
+  }),
 })
 
 export default function CreateEventForm() {
@@ -57,6 +60,7 @@ export default function CreateEventForm() {
       date: "",
       time: "",
       food_quantity: "",
+      student_alumni_prof: "",
     },
   })
 
@@ -75,12 +79,13 @@ export default function CreateEventForm() {
       // if response is not okay, then throw error
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(`${errData.error}; Status: ${response.status}`);
-      }
+        toast.error(`${errData.error}` || "Something went wrong. Please try again another time.")
+      } else {
 
-      // if response is okay, then route user to the event
-      // temp: route back to events list.
-      router.push("/events")
+        // if response is okay, then route user to the event
+        // temp: route back to events list.
+        router.push("/events")
+      }
 
     } catch (err) {
       console.log(err)
@@ -100,6 +105,7 @@ export default function CreateEventForm() {
           { name: "date", label: "Date", placeholder: "E.g., 2025-04-08" },
           { name: "time", label: "Time", placeholder: "E.g., 12:30 PM" },
           { name: "food_quantity", label: "Food Quantity", placeholder: "E.g., 5 boxes of pizza" },
+          { name: "student_alumni_prof", label: "Affiliation", placeholder: "E.g., student, alumni, faculty" },
         ].map(({ name, label, placeholder }) => (
           <FormField
             key={name}

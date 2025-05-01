@@ -16,13 +16,19 @@ export async function POST(req: Request) {
         location: `${values.building_location} ${values.room}`, // or send separately if needed
         date: values.date,
         time: values.time,
+        food_available: values.food_quantity,
+        student_alumni_prof: values.student_alumni_prof.toLowerCase(),
       }),
     });
 
     // if response is not okay, then throw error to be caught later here
     if (!response.ok) {
       const errData = await response.json();
-      throw new Error(errData.detail || `HTTP error! status: ${response.status}`);
+      console.error('Backend signup error:', errData);
+      return NextResponse.json(
+        { error: errData.detail || JSON.stringify(errData) || 'Unknown error from backend' },
+        { status: response.status }
+      );
     }
 
     // parse response

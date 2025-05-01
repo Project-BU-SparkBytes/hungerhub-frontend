@@ -47,7 +47,7 @@ export default function Home() {
               <p>
                 Join the Spark!Bytes community — where sustainability meets free food.<br />
                 Our mission is simple: reduce food waste on campus by connecting students and faculty to events with surplus meals.
-                Whether you’re looking for your next snack between classes or want to contribute to a greener BU, Spark!Bytes makes it easy.
+                Whether you&apos;re looking for your next snack between classes or want to contribute to a greener BU, Spark!Bytes makes it easy.
                 <br /><br />
                 Sign up today and help turn leftover lunches into lasting impact.
               </p>

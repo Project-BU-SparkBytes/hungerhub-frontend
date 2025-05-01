@@ -54,7 +54,7 @@ export default function Header() {
             {isAuthenticated ? (
               // only show when logged in
               <li>
-                <Link href="#"
+                <Link href="/login"
                   onClick={handleLogout}
                   className="navLink"
                 >
