@@ -3,7 +3,7 @@
 
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
-import { toast } from 'sonner'
+import { toast } from 'sonner';
 import { AuthContext } from '@/context/AuthContext';
 
 export default function LoginPage() {
