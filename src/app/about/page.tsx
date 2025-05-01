@@ -75,7 +75,7 @@ export default function About() {
             className="rounded-full object-cover flex-shrink-0"
           />
           <div className="flex-1 pl-6">
-            <h3 className="text-xl font-semibold">Leo (Last name)</h3>
+            <h3 className="text-xl font-semibold">Leo Ye</h3>
             <div className="border-b border-gray-200 w-1/4 my-3"></div>
             <p className="text-gray-600 leading-relaxed">
               Leo is a student at Boston University studying computer science.
