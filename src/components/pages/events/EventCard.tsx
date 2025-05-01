@@ -13,7 +13,7 @@ export function EventCard(props: { event: Event }) {
       <div className="flex flex-wrap items-center text-sm text-gray-700 gap-x-3 gap-y-1 mb-4">
         <p>
           📅{" "}
-          {new Date(event.date).toLocaleDateString("en-US", {
+          {new Date(`${event.date}T12:00:00`).toLocaleDateString('en-US', {
             year: "numeric",
             month: "long",
             day: "numeric",
