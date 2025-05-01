@@ -14,22 +14,7 @@ export default function Header() {
   return (
     <>
       {/* Header */}
-      <header
-        style={{
-          backgroundColor: '#F5B53B',
-          padding: '1rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'fixed',
-          top: '1rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '97%',
-          borderRadius: '12px',
-          zIndex: 1000,
-
-        }}
+      <header className='site-header'
       >
         <h1><b>Spark!Bytes</b></h1>
         <nav>
@@ -53,14 +38,27 @@ export default function Header() {
             </li>
             {isAuthenticated ? (
               // only show when logged in
-              <li>
-                <Link href="/login"
-                  onClick={handleLogout}
-                  className="navLink"
-                >
-                  Log out
-                </Link>
+              <li className="dropdown">
+                <span className="navLink">Profile</span>
+                <ul className="dropdownMenu">
+                  <li>
+                    <Link href="/profile" className='navLink'>View Profile</Link>
+                  </li>
+                  <li>
+                    <Link href="/login"
+                      onClick={handleLogout}
+                      className="navLink"
+                    >
+                      Log out
+                    </Link>
+                  </li>
+
+                </ul>
+
               </li>
+
+
+
             ) : (
               // only show when logged out
               <>
